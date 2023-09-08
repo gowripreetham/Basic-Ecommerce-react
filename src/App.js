@@ -11,6 +11,7 @@ import Men from "./pages/Men";
 import Women from "./pages/Women";
 import Kids from "./pages/Kids";
 import Cart from "./pages/Cart";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route exact path="/women" element={<Women />}></Route>
           <Route exact path="/kids" element={<Kids />}></Route>
           <Route exact path="/Cart" element={<Cart />}></Route>
+
+          <Route path="/product/:productId" element={<ProductDetails />} />
         </Routes>
       </BrowserRouter>
     </>
