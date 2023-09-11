@@ -1,45 +1,52 @@
+import img1 from "../assets/images/white-shirt.jpeg";
+import img2 from "../assets/images/b-shirt.png";
+import img3 from "../assets/images/g-tshirt.jpeg";
+import img4 from "../assets/images/b-pant.jpeg";
+import img5 from "../assets/images/w-pant.jpeg";
+import img6 from "../assets/images/w-shoes.jpeg";
+
 const products = [
   {
     id: 1,
-    name: "Product 1",
-    description: "Description of Product 1",
-    price: 19.99,
-    image: "product1.jpg",
+    name: "White Shirt",
+    description: "Just White",
+    price: 100,
+    image: img1,
   },
   {
     id: 2,
-    name: "Product 2",
-    description: "Description of Product 2",
-    price: 24.99,
-    image: "product2.jpg",
+    name: "Black Shirt",
+    description: "Pure Black",
+    price: 100,
+    image: img2,
   },
   {
     id: 3,
-    name: "Product 3",
-    description: "Description of Product 3",
-    price: 14.99,
-    image: "product3.jpg",
+    name: "Grey T-shirt",
+    description: "Just a Tshirt",
+    price: 50,
+    image: img3,
   },
   {
-    id: 3,
-    name: "Product 3",
-    description: "Description of Product 3",
-    price: 14.99,
-    image: "product3.jpg",
+    id: 4,
+    name: "Black Pant",
+    description: "Complete Black",
+    price: 250,
+    image: img4,
   },
   {
-    id: 3,
-    name: "Product 3",
-    description: "Description of Product 3",
-    price: 14.99,
-    image: "product3.jpg",
+    id: 5,
+    name: "White Pant",
+    description: "Very White",
+    price: 250,
+    image: img5,
   },
   {
-    id: 3,
-    name: "Product 3",
-    description: "Description of Product 3",
-    price: 14.99,
-    image: "product3.jpg",
+    id: 6,
+    name: "White Shoes",
+    description: "SO White",
+    price: 400,
+    image: img6,
   },
   // Add more products as needed
 ];
