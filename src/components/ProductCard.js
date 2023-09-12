@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
 
   function view() {
     // navigate("/product/:productId");
-    navigate("/product/${product.id}");
+    navigate(`/product/${product.id}`);
   }
 
   const { addToCart, cartItems } = useContext(ShopContext);
@@ -35,7 +35,6 @@ const ProductCard = ({ product }) => {
             View
           </Button>
           <Button variant="primary " onClick={() => addToCart(product.id)}>
-            {/* onClick={() => addTocart(product)} */}
             Add to Cart {cartItemAmount > 0 && <>({cartItemAmount})</>}
           </Button>
         </Card.Body>
