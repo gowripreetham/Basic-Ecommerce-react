@@ -13,6 +13,7 @@ import Kids from "./pages/Kids";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import User from "./pages/User";
+import FilteredProducts from "./pages/FilteredProducts";
 import { ShopContextProvider } from "./Contexts/shop-context";
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
             <Route exact path="/kids" element={<Kids />}></Route>
             <Route exact path="/Cart" element={<Cart />}></Route>
             <Route exact path="/User" element={<User />}></Route>
+            <Route
+              exact
+              path="/SearchedProducts"
+              element={<FilteredProducts />}
+            ></Route>
 
             <Route path="/product/:productId" element={<ProductDetails />} />
           </Routes>

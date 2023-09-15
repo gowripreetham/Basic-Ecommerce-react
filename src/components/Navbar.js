@@ -1,72 +1,87 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/Button";
+import products from "../assets/products";
 
-const Navbar = () => {
+const NavigationBar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [fproducts, setFproducts] = useState([]);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Reset the fproducts state when the location (route) changes
+    setFproducts([]);
+  }, [location]);
+
+  useEffect(() => {
+    if (fproducts.length > 0) {
+      navigate("/SearchedProducts", { state: { fproducts } });
+    }
+  }, [fproducts, navigate]);
+
+  const handleSearch = (searchQuery) => {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    // Set the filtered products in your state or pass them to a child component for rendering
+    setFproducts(filteredProducts);
+    // navigate(`/SearchedProducts/${fproducts}`);
+    // navigate("/SearchedProducts", { state: { fproducts } });
+    setSearchQuery("");
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Shopping Website
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand as={Link} to="/">
+        Shopping Website
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbar" />
+      <Navbar.Collapse id="navbar">
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/home">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to="/men">
+            Men
+          </Nav.Link>
+          <Nav.Link as={Link} to="/women">
+            Women
+          </Nav.Link>
+          <Nav.Link as={Link} to="/kids">
+            Kids
+          </Nav.Link>
+          <Nav.Link as={Link} to="/Cart">
+            Cart
+          </Nav.Link>
+          <Nav.Link as={Link} to="/User">
+            User
+          </Nav.Link>
+        </Nav>
+        <InputGroup>
+          <FormControl
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </InputGroup>
+        <Button
+          variant="outline-primary"
+          onClick={(e) => handleSearch(searchQuery)}
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/home">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/men">
-                Men
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/women">
-                Women
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/kids">
-                Kids
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Cart">
-                Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/User">
-                User
-              </Link>
-            </li>
-          </ul>
-          {/* <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form> */}
-        </div>
-      </div>
-    </nav>
+          Search
+        </Button>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavigationBar;
