@@ -14,6 +14,7 @@ import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import User from "./pages/User";
 import FilteredProducts from "./pages/FilteredProducts";
+import SideBar from "./components/SideBar";
 import { ShopContextProvider } from "./Contexts/shop-context";
 
 function App() {
