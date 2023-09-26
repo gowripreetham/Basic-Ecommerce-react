@@ -1,5 +1,8 @@
 import React, { createContext, useState } from "react";
 import products from "../assets/products";
+import { collection, addDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { db } from "../config/firebase-config";
 
 export const ShopContext = createContext(null);
 
@@ -26,8 +29,31 @@ export const ShopContextProvider = (props) => {
     return totalAmt;
   };
 
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      console.error("User is not authenticated.");
+      return;
+    }
+
+    const userId = user.uid;
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+
+    const cartRef = collection(db, "users", userId, "cart");
+
+    try {
+      await addDoc(cartRef, {
+        productId: itemId,
+        quantity: 1,
+      });
+      console.log("Item added to cart.");
+    } catch (error) {
+      console.error("Error adding item to cart: ");
+    }
   };
 
   const removeFromCart = (itemId) => {

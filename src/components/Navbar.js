@@ -64,6 +64,9 @@ const NavigationBar = () => {
           <Nav.Link as={Link} to="/User">
             User
           </Nav.Link>
+          <Nav.Link as={Link} to="/Extra">
+            Extra
+          </Nav.Link>
         </Nav>
         <InputGroup>
           <FormControl
